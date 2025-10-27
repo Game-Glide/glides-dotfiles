@@ -1,0 +1,24 @@
+{
+    "closeOnFocusLoss": false,
+    "faviconService": "twenty",
+    "font": {
+        "normal": "CaskaydiaCove Nerd Font",
+        "size": 10
+    },
+    "keybinding": "default",
+    "keybinds": {
+    },
+    "popToRootOnClose": false,
+    "rootSearch": {
+        "searchFiles": false
+    },
+    "theme": {
+        "iconTheme": "Slot-Spectrum-Dark-Icons",
+        "name": "catppuccin-mocha.json"
+    },
+    "window": {
+        "csd": true,
+        "opacity": 0.9,
+        "rounding": 10
+    }
+}
