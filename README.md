@@ -9,6 +9,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-th
 
 The things that were used here was the following:
  - kitty terminal
+ - Hyprland
  - hyprpanel
  - hyprlock
  - hypridle
