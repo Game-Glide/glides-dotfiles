@@ -49,19 +49,20 @@ _pssh, some [wallpaper goodies](./wallpapers/) are also included_
 
 The things that were used here was the following:
 
-| Tool                                                          | Description                                                  |
-| ------------------------------------------------------------- | ------------------------------------------------------------ |
-| **[kitty](https://sw.kovidgoyal.net/kitty/#)**                | _A gpu-accelerated terminal._                                |
-| **[Hyprland](https://hypr.land/)**                            | _A customizable tiling WM_                                   |
-| **[hyprpanel](https://hyprpanel.com/)**                       | _Easy to use status bar_                                     |
-| **[hyprlock](https://github.com/hyprwm/hyprlock)**            | _Lock screen utility_                                        |
-| **[hypridle](https://github.com/hyprwm/hypridle)**            | _Multipurpose util mainly for timers_                        |
-| **[mpvpaper](https://github.com/GhostNaN/mpvpaper)**          | _THE WALLPAPERS, THEY MOVEEEE_                               |
-| **[fish](https://fishshell.com/)**                            | _cool shell_                                                 |
-| **[starship](https://starship.rs/)**                          | _cool shell prompt_                                          |
-| **[hyprquickshot](https://github.com/JamDon2/hyprquickshot)** | _User friendly screenshot tool_                              |
-| **[tty-clock](https://github.com/xorg62/tty-clock)**          | _Terminal Clock_                                             |
-| **[unimatrix](https://github.com/will8211/unimatrix)**        | _CMatrix but newer_                                          |
-| **[vicinae](https://docs.vicinae.com/)**                      | _Clean application launcher_                                 |
-| **[cava](https://github.com/karlstav/cava)**                  | _Music Visualizer_                                           |
-| **[sddm](https://github.com/sddm/sddm)**                      | _Greetings (get it? coz its a greeter, I'll see myself out)_ |
+| Tool                                                                          | Description                                                  |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| **[kitty](https://sw.kovidgoyal.net/kitty/#)**                                | _A gpu-accelerated terminal._                                |
+| **[Hyprland](https://hypr.land/)**                                            | _A customizable tiling WM_                                   |
+| **[hyprpanel](https://hyprpanel.com/)**                                       | _Easy to use status bar_                                     |
+| **[hyprlock](https://github.com/hyprwm/hyprlock)**                            | _Lock screen utility_                                        |
+| **[hypridle](https://github.com/hyprwm/hypridle)**                            | _Multipurpose util mainly for timers_                        |
+| **[hyprexpo](https://github.com/hyprwm/hyprland-plugins/tree/main/hyprexpo)** | _Official overview plugin for hyprland_                      |
+| **[mpvpaper](https://github.com/GhostNaN/mpvpaper)**                          | _THE WALLPAPERS, THEY MOVEEEE_                               |
+| **[fish](https://fishshell.com/)**                                            | _cool shell_                                                 |
+| **[starship](https://starship.rs/)**                                          | _cool shell prompt_                                          |
+| **[hyprquickshot](https://github.com/JamDon2/hyprquickshot)**                 | _User friendly screenshot tool_                              |
+| **[tty-clock](https://github.com/xorg62/tty-clock)**                          | _Terminal Clock_                                             |
+| **[unimatrix](https://github.com/will8211/unimatrix)**                        | _CMatrix but newer_                                          |
+| **[vicinae](https://docs.vicinae.com/)**                                      | _Clean application launcher_                                 |
+| **[cava](https://github.com/karlstav/cava)**                                  | _Music Visualizer_                                           |
+| **[sddm](https://github.com/sddm/sddm)**                                      | _Greetings (get it? coz its a greeter, I'll see myself out)_ |

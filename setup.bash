@@ -49,7 +49,7 @@ package_install() {
    echo "requesting elevated perms"
    sudo -i # elevate privileges
    echo "Installing base hyprland packages"
-   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch
+   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd
 
    echo "Finished... Installing Dependencies"
    curl -sS https://starship.rs/install.sh | sh
@@ -87,6 +87,10 @@ copy_config() {
    # Copy gtk themes
    cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
    cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
+
+   # Setup hyprland plugins
+   hyprpm add https://github.com/hyprwm/hyprland-plugins
+   hyprpm enable hyprexpo
    exit
 }
 
