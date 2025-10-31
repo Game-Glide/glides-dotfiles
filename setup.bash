@@ -1,7 +1,24 @@
 #! /bin/bash
+echo "Installing git"
+sudo -i
+pacman -S git
+exit # give up su
+
+if [ -f ~/Temp ]; then
+ cd ~/Temp
+ git clone https://github.com/Game-Glide/glides-dotfiles.git --depth=1
+ cd glides-dotfiles
+else
+ touch ~/Temp
+ cd ~/Temp
+ git clone https://github.com/Game-Glide/glides-dotfiles.git --depth=1
+ cd glides-dotfiles
+fi
+
 echo -e "\e[31mMAKE SURE TO HAVE GPU DRIVERS INSTALLED YOURSELF ALREADY\e[0m"
-read -p "Press enter to continue.."
+read -p "Press enter to continue..."
 os_check
+cleanup
 
 os_check() {
  if [ -f /etc/os-release ]; then
@@ -31,7 +48,7 @@ os_check() {
 package_install() {
    sudo -i # elevate privileges
    echo "Installing base hyprland packages"
-   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm git base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch
+   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch
 
    echo "Finished... Installing Dependencies"
    curl -sS https://starship.rs/install.sh | sh
@@ -61,4 +78,8 @@ copy_config() {
    cp -r ./.config/ ~/.config/
 
    cp -r ./wallpapers/ ~/wallpapers
+}
+
+cleanup() {
+ rm -rf ~/Temp
 }
