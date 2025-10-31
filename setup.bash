@@ -4,7 +4,7 @@ sudo -i
 pacman -S git
 exit # give up su
 
-if [ -f ~/Temp ]; then
+if [ -d ~/Temp ]; then
  cd ~/Temp
  git clone https://github.com/Game-Glide/glides-dotfiles.git --depth=1
  cd glides-dotfiles
