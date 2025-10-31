@@ -1,5 +1,5 @@
 #! /bin/bash
-echo "Installing git"
+echo "Installing git, requesting elevated perms"
 sudo -i
 pacman -S git
 exit # give up su
@@ -46,6 +46,7 @@ os_check() {
 }
 
 package_install() {
+   echo "requesting elevated perms"
    sudo -i # elevate privileges
    echo "Installing base hyprland packages"
    sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch
@@ -72,12 +73,21 @@ install_hyprquickshot() {
 }
 
 copy_config() {
-   # create backup
+   echo "requesting elevated perms"
+   sudo -i
+   # Create backup
    cp ~/.config/ ~/backups/.config
+   # Copy config
    rm -rf ~/.config
    cp -r ./.config/ ~/.config/
 
+   # Copy wallpapers
    cp -r ./wallpapers/ ~/wallpapers
+
+   # Copy gtk themes
+   cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
+   cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
+   exit
 }
 
 cleanup() {

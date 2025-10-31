@@ -2,15 +2,33 @@
     <img src="./.github/other/hero.png" alt="hero" />
     <h1 align="left">🔮 Glide's Botched Dotfiles </h1>
     <p align="left">
-        Possibly weird files which dictate the look of my arch linux setup.
-        Run a bash script which I'll create if I can be arsed at some point in
-        time to do it to set it up for you.
+        Dotfiles for my arch hyprland rice, if its too basic for you
+        too bad :/ idk how to do much else. Feel free to suggest or add stuff
+        if you're more skilled than me at this. (you probably are)
+        If you just wanna try it out Look below!
+        <br/>
+        <br/>
+        <em>Yes, I was infact arsed to make a install script, I too am surprised</em>
     </p>
+
 </div>
 
-## 📂 Installation
+## 🚀 Installation
 
-Yet to be arsed to make a script
+> <span style="color:red">Make sure to install graphics drivers before running
+> the following
+> </span>
+
+Run the following command:
+
+```bash
+curl -sL https://github.com/Game-Glide/glides-dotfiles/blob/main/setup.bash | bash
+```
+
+then follow the botched instructions perchance and it may work if it feels
+like it :)
+
+_pssh, some [wallpaper goodies](./wallpapers/) are also included_
 
 ## 📺 Preview
 
@@ -47,12 +65,3 @@ The things that were used here was the following:
 | **[vicinae](https://docs.vicinae.com/)**                      | _Clean application launcher_                                 |
 | **[cava](https://github.com/karlstav/cava)**                  | _Music Visualizer_                                           |
 | **[sddm](https://github.com/sddm/sddm)**                      | _Greetings (get it? coz its a greeter, I'll see myself out)_ |
-
-A script will be made **thoon** <br/>
-_pssh, some [wallpaper goodies](./wallpapers/) are also included_
-
-Download sddm theme from this [repo](https://github.com/Keyitdev/sddm-astronaut-theme)
-
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
-```
