@@ -1,6 +1,6 @@
 <div align="center">
     <img src="./.github/other/hero.png" alt="hero" />
-    <h1 align="left"> Glide's Botched Dotfiles </h1>
+    <h1 align="left">🔮 Glide's Botched Dotfiles </h1>
     <p align="left">
         Possibly weird files which dictate the look of my arch linux setup.
         Run a bash script which I'll create if I can be arsed at some point in
@@ -8,11 +8,11 @@
     </p>
 </div>
 
-## Installation
+## 📂 Installation
 
 Yet to be arsed to make a script
 
-## Preview
+## 📺 Preview
 
 <details>
 <summary> Click for preview </summary>
@@ -27,7 +27,7 @@ Yet to be arsed to make a script
 
 ---
 
-## Components
+## ⚙️ Components
 
 The things that were used here was the following:
 
