@@ -44,6 +44,7 @@ The things that were used here was the following:
 | **[hyprquickshot](https://github.com/JamDon2/hyprquickshot)** | _User friendly screenshot tool_                              |
 | **[tty-clock](https://github.com/xorg62/tty-clock)**          | _Terminal Clock_                                             |
 | **[unimatrix](https://github.com/will8211/unimatrix)**        | _CMatrix but newer_                                          |
+| **[vicinae](https://docs.vicinae.com/)**                      | _Clean application launcher_                                 |
 | **[cava](https://github.com/karlstav/cava)**                  | _Music Visualizer_                                           |
 | **[sddm](https://github.com/sddm/sddm)**                      | _Greetings (get it? coz its a greeter, I'll see myself out)_ |
 
