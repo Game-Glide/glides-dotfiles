@@ -1,6 +1,5 @@
 #! /bin/bash
 echo "Installing git, requesting elevated perms"
-sudo -i
 sudo pacman -S git
 
 if [ -d ~/Temp ]; then
@@ -78,9 +77,9 @@ copy_config() {
    cp -r ./wallpapers/ ~/wallpapers
 
    # Copy gtk themes
-   cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
-   cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
-   cp -r ./gtk-themes/icon-themes/ ~/usr/share/icons
+   sudo cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
+   sudo cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
+   sudo cp -r ./gtk-themes/icon-themes/ ~/usr/share/icons
 
    # Setup hyprland plugins
    hyprpm add https://github.com/hyprwm/hyprland-plugins
