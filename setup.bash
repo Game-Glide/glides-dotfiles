@@ -1,15 +1,24 @@
 #! /bin/bash
 echo "Installing git, requesting elevated perms"
-sudo -in
+sudo pacman -Syu
 sudo pacman -S git
 
-if [ -d ~/Temp ]; then
- cd ~/Temp
+install_yay() {
+   git clone https://aur.archlinux.org/yay.git
+   cd yay
+   makepkg -si
+   cd ..
+}
+
+if [ -d ~/.temp ]; then
+ cd ~/.temp
+ install_yay
  git clone https://github.com/Game-Glide/glides-dotfiles.git --depth=1
  cd glides-dotfiles
 else
- touch ~/Temp
- cd ~/Temp
+ mkdir ~/.temp
+ cd ~/.temp
+ install_yay
  git clone https://github.com/Game-Glide/glides-dotfiles.git --depth=1
  cd glides-dotfiles
 fi
@@ -19,13 +28,12 @@ read -p "Press enter to continue..."
 
 package_install() {
    echo "Installing base hyprland packages"
-   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd
+   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd python python-pip cmake
    
    echo "Finished... Installing Dependencies"
    curl -sS https://starship.rs/install.sh | sh
 
-   sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -o /usr/local/bin/unimatrix
-   sudo chmod a+rx /usr/local/bin/unimatrix
+   pip install git+https://github.com/will8211/unimatrix.git
 
    yay -S ags-hyprpanel-git tty-clock vicinae quickshell mpvpaper
 }
@@ -35,25 +43,40 @@ install_hyprquickshot() {
    if [ -d ~/.config/quickshell/hyprquickshot ]; then
     git clone https://github.com/jamdon2/hyprquickshot ~/.config/quickshell/hyprquickshot
    else
-    touch ~/.config/quickshell/hyprquickshot
+    mkdir ~/.config/quickshell/hyprquickshot
     git clone https://github.com/jamdon2/hyprquickshot ~/.config/quickshell/hyprquickshot
    fi
 }
 
 copy_config() {
    # Create backup
-   cp ~/.config/ ~/backups/.config
-   # Copy config
-   rm -rf ~/.config
-   cp -r ./.config/ ~/.config/
-
+   if [ -d ~/.config ]; then
+      cp ~/.config/ ~/backups/.config
+      # Copy config
+      rm -rf ~/.config
+      cp -r ./.config/ ~/.config/
+   else
+      mkdir ~/.config
+      cp -r ./.config/ ~/.config/
+   fi
+    
    # Copy wallpapers
+   mkdir ~/wallpapers
    cp -r ./wallpapers/ ~/wallpapers
 
-   # Copy gtk themes
-   sudo cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
-   sudo cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
-   sudo cp -r ./gtk-themes/icon-themes/ ~/usr/share/icons
+   if [ -d ~/usr/share/themes/ && ~/usr/share/icons/ ]; then
+      # Copy gtk themes
+      sudo cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
+      sudo cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
+      sudo cp -r ./gtk-themes/icon-themes/ ~/usr/share/icons/
+   else
+      mkdir ~/usr/share/themes/
+      mkdir ~/usr/share/icons/
+
+      sudo cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
+      sudo cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
+      sudo cp -r ./gtk-themes/icon-themes/ ~/usr/share/icons/
+   fi
 
    # Setup hyprland plugins
    hyprpm add https://github.com/hyprwm/hyprland-plugins
@@ -86,7 +109,7 @@ os_check() {
 }
 
 cleanup() {
- rm -rf ~/Temp
+ rm -rf ~/.temp
 }
 
 os_check
