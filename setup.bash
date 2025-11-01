@@ -87,6 +87,7 @@ copy_config() {
    # Copy gtk themes
    cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
    cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
+   cp -r ./gtk-themes/icon-themes/ ~/usr/share/icons
 
    # Setup hyprland plugins
    hyprpm add https://github.com/hyprwm/hyprland-plugins
