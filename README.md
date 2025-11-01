@@ -22,7 +22,7 @@
 Run the following command:
 
 ```bash
-curl -sL https://github.com/Game-Glide/glides-dotfiles/blob/main/setup.bash | bash
+curl -sL https://raw.githubusercontent.com/Game-Glide/glides-dotfiles/main/setup.bash | bash
 ```
 
 then follow the botched instructions perchance and it may work if it feels
