@@ -2,7 +2,6 @@
 echo "Installing git, requesting elevated perms"
 sudo -in
 sudo pacman -S git
-exit # give up sudo
 
 if [ -d ~/Temp ]; then
  cd ~/Temp
@@ -17,6 +16,49 @@ fi
 
 echo -e "\e[31mMAKE SURE TO HAVE GPU DRIVERS INSTALLED YOURSELF ALREADY\e[0m"
 read -p "Press enter to continue..."
+
+package_install() {
+   echo "Installing base hyprland packages"
+   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd
+   
+   echo "Finished... Installing Dependencies"
+   curl -sS https://starship.rs/install.sh | sh
+
+   sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -o /usr/local/bin/unimatrix
+   sudo chmod a+rx /usr/local/bin/unimatrix
+
+   yay -S ags-hyprpanel-git tty-clock vicinae quickshell mpvpaper
+}
+
+install_hyprquickshot() {
+   # create config dir for hyprquickshot
+   if [ -d ~/.config/quickshell/hyprquickshot ]; then
+    git clone https://github.com/jamdon2/hyprquickshot ~/.config/quickshell/hyprquickshot
+   else
+    touch ~/.config/quickshell/hyprquickshot
+    git clone https://github.com/jamdon2/hyprquickshot ~/.config/quickshell/hyprquickshot
+   fi
+}
+
+copy_config() {
+   # Create backup
+   cp ~/.config/ ~/backups/.config
+   # Copy config
+   rm -rf ~/.config
+   cp -r ./.config/ ~/.config/
+
+   # Copy wallpapers
+   cp -r ./wallpapers/ ~/wallpapers
+
+   # Copy gtk themes
+   sudo cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
+   sudo cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
+   sudo cp -r ./gtk-themes/icon-themes/ ~/usr/share/icons
+
+   # Setup hyprland plugins
+   hyprpm add https://github.com/hyprwm/hyprland-plugins
+   hyprpm enable hyprexpo
+}
 
 os_check() {
  if [ -f /etc/os-release ]; then
@@ -43,57 +85,9 @@ os_check() {
  fi
 }
 
-package_install() {
-   echo "Installing base hyprland packages"
-   sudo -in
-   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd
-   
-   echo "Finished... Installing Dependencies"
-   curl -sS https://starship.rs/install.sh | sh
-
-   sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -o /usr/local/bin/unimatrix
-   sudo chmod a+rx /usr/local/bin/unimatrix
-   exit # give up su
-
-   yay -S ags-hyprpanel-git tty-clock vicinae quickshell mpvpaper
-}
-
-install_hyprquickshot() {
-   # create config dir for hyprquickshot
-   if [ -d ~/.config/quickshell/hyprquickshot ]; then
-    git clone https://github.com/jamdon2/hyprquickshot ~/.config/quickshell/hyprquickshot
-   else
-    touch ~/.config/quickshell/hyprquickshot
-    git clone https://github.com/jamdon2/hyprquickshot ~/.config/quickshell/hyprquickshot
-   fi
-}
-
-copy_config() {
-   # Create backup
-   cp ~/.config/ ~/backups/.config
-   # Copy config
-   rm -rf ~/.config
-   cp -r ./.config/ ~/.config/
-
-   # Copy wallpapers
-   cp -r ./wallpapers/ ~/wallpapers
-
-   sudo -in
-   # Copy gtk themes
-   sudo cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
-   sudo cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
-   sudo cp -r ./gtk-themes/icon-themes/ ~/usr/share/icons
-
-   # Setup hyprland plugins
-   hyprpm add https://github.com/hyprwm/hyprland-plugins
-   hyprpm enable hyprexpo
-   exit # give up su
-}
-
 cleanup() {
  rm -rf ~/Temp
 }
-
 
 os_check
 cleanup
