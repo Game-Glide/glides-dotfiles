@@ -28,7 +28,8 @@ curl -sL https://github.com/Game-Glide/glides-dotfiles/blob/main/setup.bash | ba
 then follow the botched instructions perchance and it may work if it feels
 like it :)
 
-_pssh, some [wallpaper goodies](./wallpapers/) are also included_
+> [!NOTE]
+> _pssh, some [wallpaper goodies](./wallpapers/) are also included_
 
 ## 📺 Preview
 
