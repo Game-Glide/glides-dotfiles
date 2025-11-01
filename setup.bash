@@ -1,8 +1,7 @@
 #! /bin/bash
 echo "Installing git, requesting elevated perms"
 sudo -i
-pacman -S git
-exit # give up su
+sudo pacman -S git
 
 if [ -d ~/Temp ]; then
  cd ~/Temp
@@ -46,8 +45,6 @@ os_check() {
 }
 
 package_install() {
-   echo "requesting elevated perms"
-   sudo -i # elevate privileges
    echo "Installing base hyprland packages"
    sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd
 
@@ -56,8 +53,6 @@ package_install() {
 
    sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -o /usr/local/bin/unimatrix
    sudo chmod a+rx /usr/local/bin/unimatrix
-
-   exit # give up su privileges
 
    yay -S ags-hyprpanel-git tty-clock vicinae quickshell mpvpaper
 }
@@ -73,8 +68,6 @@ install_hyprquickshot() {
 }
 
 copy_config() {
-   echo "requesting elevated perms"
-   sudo -i
    # Create backup
    cp ~/.config/ ~/backups/.config
    # Copy config
@@ -92,7 +85,6 @@ copy_config() {
    # Setup hyprland plugins
    hyprpm add https://github.com/hyprwm/hyprland-plugins
    hyprpm enable hyprexpo
-   exit
 }
 
 cleanup() {
