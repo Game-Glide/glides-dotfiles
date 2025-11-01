@@ -28,7 +28,7 @@ read -p "Press enter to continue..."
 
 package_install() {
    echo "Installing base hyprland packages"
-   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd python python-pip cmake
+   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd python python-pip cmake nautilus
    
    echo "Finished... Installing Dependencies"
    curl -sS https://starship.rs/install.sh | sh
