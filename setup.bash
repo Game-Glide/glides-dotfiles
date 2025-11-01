@@ -1,6 +1,8 @@
 #! /bin/bash
 echo "Installing git, requesting elevated perms"
+sudo -in
 sudo pacman -S git
+exit # give up sudo
 
 if [ -d ~/Temp ]; then
  cd ~/Temp
@@ -15,8 +17,6 @@ fi
 
 echo -e "\e[31mMAKE SURE TO HAVE GPU DRIVERS INSTALLED YOURSELF ALREADY\e[0m"
 read -p "Press enter to continue..."
-os_check
-cleanup
 
 os_check() {
  if [ -f /etc/os-release ]; then
@@ -45,13 +45,15 @@ os_check() {
 
 package_install() {
    echo "Installing base hyprland packages"
+   sudo -in
    sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd
-
+   
    echo "Finished... Installing Dependencies"
    curl -sS https://starship.rs/install.sh | sh
 
    sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -o /usr/local/bin/unimatrix
    sudo chmod a+rx /usr/local/bin/unimatrix
+   exit # give up su
 
    yay -S ags-hyprpanel-git tty-clock vicinae quickshell mpvpaper
 }
@@ -76,6 +78,7 @@ copy_config() {
    # Copy wallpapers
    cp -r ./wallpapers/ ~/wallpapers
 
+   sudo -in
    # Copy gtk themes
    sudo cp -r ./gtk-themes/color-themes/ ~/usr/share/themes/
    sudo cp -r ./gtk-themes/cursor-themes/ ~/usr/share/icons/
@@ -84,8 +87,13 @@ copy_config() {
    # Setup hyprland plugins
    hyprpm add https://github.com/hyprwm/hyprland-plugins
    hyprpm enable hyprexpo
+   exit # give up su
 }
 
 cleanup() {
  rm -rf ~/Temp
 }
+
+
+os_check
+cleanup
