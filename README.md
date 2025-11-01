@@ -15,9 +15,9 @@
 
 ## 🚀 Installation
 
-> <span style="color:red">Make sure to install graphics drivers before running
+> [!CAUTION]
+> Make sure to install graphics drivers before running
 > the following
-> </span>
 
 Run the following command:
 
