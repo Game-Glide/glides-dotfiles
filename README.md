@@ -22,14 +22,13 @@
 Run the following command:
 
 ```bash
-curl -sL https://raw.githubusercontent.com/Game-Glide/glides-dotfiles/main/setup.bash | bash
+curl -sL https://raw.githubusercontent.com/Game-Glide/glides-dotfiles/main/setup.sh | bash
 ```
 
 then follow the botched instructions perchance and it may work if it feels
 like it :)
 
-> [!NOTE]
-> _pssh, some [wallpaper goodies](./wallpapers/) are also included_
+> [!NOTE] > _pssh, some [wallpaper goodies](./wallpapers/) are also included_
 
 ## 📺 Preview
 
