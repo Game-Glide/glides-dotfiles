@@ -3,32 +3,46 @@ echo "Installing git, requesting elevated perms"
 sudo pacman -Syu
 sudo pacman -S git
 
+mkdir -p ~/.temp/glideconfigs
+TEMP_DIRECTORY="$HOME/.temp" 
+
 install_yay() {
-   git clone https://aur.archlinux.org/yay.git
-   cd yay
-   makepkg -si
-   cd ..
+   if command -v yay >/dev/null 2>&1; then 
+      echo "yay is already installed"
+      return
+   fi 
+
+   # make a yay build directory, also its now safe to run it multiple times
+   # also just to be clear i dont use ~/.temp/yay-temp becasue im putting it in a variable
+   # it should be fine but im just gonna be safe :)
+   YAY_BUILD_DIRECTORY="$TEMP_DIRECTORY/yay-temp"
+   mkdir -p "$YAY_BUILD_DIRECTORY"
+
+   cd "$YAY_BUILD_DIRECTORY" || {echo "failed to enter $YAY_BUILD_DIRECTORY"; return 1; }
+
+   if [ ! -d yay ]; then
+      git clone https://aur.archlinux.org/yay.git || { echo "git clone failed"; return 1; }
+   fi 
+
+   cd yay || { echo "Failed to enter yay folder, check if its all good"; return 1; }
+
+   # if it fails return.
+   makepkg -si || { echo "makepkg failed"; return 1; }
+
+   echo "yay installed successfully"
 }
 
-if [ -d ~/.temp ]; then
- cd ~/.temp
- install_yay
- git clone https://github.com/Game-Glide/glides-dotfiles.git --depth=1
- cd glides-dotfiles
-else
- mkdir ~/.temp
- cd ~/.temp
- install_yay
- git clone https://github.com/Game-Glide/glides-dotfiles.git --depth=1
- cd glides-dotfiles
-fi
+cd $TEMP_DIRECTORY
+install_yay
+git clone https://github.com/Game-Glide/glides-dotfiles.git --depth=1
+cd glides-dotfiles
 
 echo -e "\e[31mMAKE SURE TO HAVE GPU DRIVERS INSTALLED YOURSELF ALREADY\e[0m"
 read -p "Press enter to continue..."
 
 package_install() {
    echo "Installing base hyprland packages"
-   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol pulseaudio pulseaudio-alsa fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd python python-pip cmake nautilus
+   sudo pacman -S hyprland pipewire neovim wireplumber pavucontrol fish unimatrix cava sddm base-devel hyprlock hypridle grim imagemagick wl-clipboard fastfetch ttf-jetbrains-mono-nerd ttf-cascadia-code-nerd python python-pip cmake nautilus
    
    echo "Finished... Installing Dependencies"
    curl -sS https://starship.rs/install.sh | sh
@@ -40,11 +54,13 @@ package_install() {
 
 install_hyprquickshot() {
    # create config dir for hyprquickshot
-   if [ -d ~/.config/quickshell/hyprquickshot ]; then
-    git clone https://github.com/jamdon2/hyprquickshot ~/.config/quickshell/hyprquickshot
+   if [ ! -d ~/.config/quickshell/hyprquickshot ]; then
+      mkdir -p ~/.config/quickshell
+      git clone https://github.com/jamdon2/hyprquickshot ~/.config/quickshell/hyprquickshot \
+         || { echo "Failed to clone hyprquickshot"; return 1; }
+      echo "hyprquickshot installed successfully"
    else
-    mkdir ~/.config/quickshell/hyprquickshot
-    git clone https://github.com/jamdon2/hyprquickshot ~/.config/quickshell/hyprquickshot
+      echo "hyprquickshot already installed, skipping..."
    fi
 }
 
@@ -78,9 +94,11 @@ copy_config() {
       sudo cp -r ./gtk-themes/icon-themes/ ~/usr/share/icons/
    fi
 
-   # Setup hyprland plugins
-   hyprpm add https://github.com/hyprwm/hyprland-plugins
-   hyprpm enable hyprexpo
+   # Setup hyprland plugins check it exsists first too
+   command -v hyprpm >/dev/null 2>&1 && {
+      hyprpm add https://github.com/hyprwm/hyprland-plugins
+      hyprpm enable hyprexpo
+   }
 }
 
 os_check() {
@@ -109,7 +127,7 @@ os_check() {
 }
 
 cleanup() {
- rm -rf ~/.temp
+ rm -rf $TEMP_DIRECTORY
 }
 
 os_check
